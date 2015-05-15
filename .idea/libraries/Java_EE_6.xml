@@ -1,0 +1,37 @@
+<component name="libraryTable">
+  <library name="Java EE 6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javaee-api-5.0-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.servlet.jsp.jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jaxb-api-2.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.ejb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.transaction.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.resource.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-classloading-spi-5.1.0.SP1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-classloading-2.0.7.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.servlet.jsp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-classloader-2.0.7.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/dtdparser121-1.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.annotation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/activation-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/javax.persistence.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-dependency-2.0.9.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-common-core-2.2.11.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-logging-log4j-2.1.2.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-logging-spi-2.1.2.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-mdr-2.0.1.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-managed-2.1.1.CR1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-reflect-2.0.2.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jboss-metatype-2.1.1.CR1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/jbossxb-2.0.1.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/log4j-1.2.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/log4j-1.2.17-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/xercesImpl-2.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EPE/lib/xml-apis-2.9.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

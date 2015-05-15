@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" build-on-make="true" name="Hari:ear">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hari_ear</output-path>
+    <root id="root">
+      <element id="module-output" name="Application" />
+      <element id="javaee-facet-resources" facet="Application/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="FrontEnd.war">
+        <element id="artifact" artifact-name="FrontEnd:war exploded" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>Hari</title>
+		<link rel="icon" type="image/png" href="src/icon/favicon.png">
+		<link rel="shortcut icon" href="src/icon/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="src/css/theme.css" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css' />
+	</head>
+	<body>
+		<div class="header noselect">
+			<div class="title">Hari</div>
+			<div class="needle"></div>
+		</div>
+
+		<div class="tab center" id="tab_menu">
+			<div class="title">Reliable Insulin Calculator</div>
+			<div class="subsubtitle">Select the type of calculation:</div>
+			<ul class="equiWidthList center">
+				<li class="button" onclick="selectTab('tab_standard')">Meal Time Dosage - Standard</li>
+				<li class="button" onclick="selectTab('tab_personal')">Meal Time Dosage - Personal</li>
+				<li class="button" onclick="selectTab('tab_background')">Background Insulin Dosage</li>
+			</ul>
+		</div>
+
+		<div class="tab center" id="tab_standard">
+			<div class="title">Standard Sensitivity Mealtime Insulin Dosage</div>
+			<form method="post" class="calculator_form" action="standard">
+				<div class="row">
+					<label for="std_chgrams">Carbohydrates (grams):</label>
+					<input type="number" min="60" max="120" id="std_chgrams" name="chgrams" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="std_chperunit">Carbohydrates Processed/Unit (grams):</label>
+					<input type="number" value="12" min="10" max="15" id="std_chperunit" name="chperunit" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="std_bloodsugar">Actual Blood Sugar Level Before Meal (mg/dl):</label>
+					<input type="number" value="" min="120" max="250" id="std_bloodsugar" name="bloodsugar" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="std_targetbloodsugar">Target Blood Sugar Level Before Meal (mg/dl):</label>
+					<input type="number" value="" min="80" max="120" id="std_targetbloodsugar" name="targetbloodsugar" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="std_sensitivity">Individual Sensitivity (mg/dl):</label>
+					<input type="number" value="50" min="15" max="100" id="std_sensitivity" name="sensitivity" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<div class="button btn_green inline_block btn_submit">Calculate</div>
+					<div class="button btn_red inline_block" onclick="selectTab(defaultTab)">Close</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="tab center" id="tab_personal">
+			<div class="title">Personal Sensitivity Mealtime Insulin Dosage</div>
+			<form method="post" class="calculator_form"  action="personal">
+				<div class="row">
+					<label for="chgrams">Carbohydrates (grams):</label>
+					<input type="number" min="60" max="120" id="chgrams" name="chgrams" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="chperunit">Carbohydrates Processed/Unit (grams):</label>
+					<input type="number" value="12" min="10" max="15" id="chperunit" name="chperunit" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="bloodsugar">Actual Blood Sugar Level Before Meal (mg/dl):</label>
+					<input type="number" value="" min="120" max="250" id="bloodsugar" name="bloodsugar" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="targetbloodsugar">Target Blood Sugar Level Before Meal (mg/dl):</label>
+					<input type="number" value="" min="80" max="120" id="targetbloodsugar" name="targetbloodsugar" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<label for="sensitivity">Individual Sensitivity (mg/dl):</label>
+					<input type="number" value="50" min="15" max="100" id="sensitivity" name="sensitivity" placeholder="" required>
+				</div>
+
+
+
+				<div class="samples_row left">
+					<div class="left subsubtitle noselect" >
+						Samples
+						<div class="sampleButton addSample" onclick="addSample()">✚</div>
+						<div class="sampleButton remSample" onclick="removeSample()">✖</div>
+					</div>
+
+					<div class="sample_block small">
+						<div>Physical Activity Level</div>
+						<div>Blood Sugar Drop (mg/dl)</div>
+					</div>
+
+					<div class="sample_block">
+						<div><input type="number" value="" min="0" max="10" name="palevel[]" placeholder="" required></div>
+						<div><input type="number" value="" min="15" max="100" name="bsdrop[]" placeholder="" required></div>
+					</div>
+
+					<div class="sample_block">
+						<div><input type="number" value="" min="0" max="10" name="palevel[]" placeholder="" required></div>
+						<div><input type="number" value="" min="15" max="100" name="bsdrop[]" placeholder="" required></div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="button btn_green inline_block btn_submit">Calculate</div>
+					<div class="button btn_red inline_block" onclick="resetSamples(); selectTab(defaultTab);">Close</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="tab center" id="tab_background">
+			<div class="title">Background Insulin Dosage</div>
+			<form method="post" class="calculator_form" action="background">
+				<div class="row">
+					<label for="weight">Weight (KiloGrams):</label>
+					<input type="number" min="40" max="130" id="weight" name="weight" placeholder="" required>
+				</div>
+
+				<div class="row">
+					<div class="button btn_green inline_block btn_submit">Calculate</div>
+					<div class="button btn_red inline_block" onclick="selectTab(defaultTab)">Close</div>
+				</div>
+			</form>
+		</div>
+
+		<script src="src/js/jquery/jquery-2.1.4.js"></script>
+		<script src="src/js/main.js"></script>
+	</body>
+</html>
