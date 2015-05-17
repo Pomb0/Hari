@@ -42,65 +42,90 @@ public class Voter implements VoterInterface{
 
 	@Override
 	public VoterResult mealtimeInsulinDose(final int carbohydrateAmount, final int carbohydrateToInsulinRatio, final int preMealBloodSugar, final int targetBloodSugar, final int personalSensitivity) {
-		prepareVoting();
-		for(int i=0;i<versionCount; i++){
-			final int _id = i;
-			voterThreads[i] = new Thread(
-					new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
-						@Override
-						public int getResult() throws Exception {
-							return calculators[_id].mealtimeInsulinDose(carbohydrateAmount, carbohydrateToInsulinRatio, preMealBloodSugar, targetBloodSugar, personalSensitivity);
+		VoterResult result = null;
+		int retries = -1;
+		do {
+			retries++;
+			System.out.println("Retry: " + retries);
+			offset = retries*versionCount;
+			prepareVoting();
+			for (int i = 0; i < versionCount; i++) {
+				final int _id = i;
+				voterThreads[i] = new Thread(
+						new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
+							@Override
+							public int getResult() throws Exception {
+								return calculators[_id].mealtimeInsulinDose(carbohydrateAmount, carbohydrateToInsulinRatio, preMealBloodSugar, targetBloodSugar, personalSensitivity);
+							}
 						}
-					}
-			);
-			voterThreads[i].start();
-		}
-		return getVotedResult().setMethod("mealtimeInsulinDose()");
+				);
+				voterThreads[i].start();
+			}
+			result = getVotedResult().setMethod("mealtimeInsulinDose()");
+		}while( !isTimedOut() && (result==null || !result.isSuccessful()) && retries < 1);
+		return result;
 	}
 
 	@Override
 	public VoterResult backgroundInsulinDose(final int bodyWeight) {
-		prepareVoting();
-		for(int i=0;i<versionCount; i++){
-			final int _id = i;
-			voterThreads[i] = new Thread(
-					new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
-						@Override
-						public int getResult() throws Exception {
-							return calculators[_id].backgroundInsulinDose(bodyWeight);
+		VoterResult result = null;
+		int retries = -1;
+		do {
+			retries++;
+			System.out.println("Retry: " + retries);
+			offset = retries*versionCount;
+			prepareVoting();
+			for(int i=0;i<versionCount; i++){
+				final int _id = i;
+				voterThreads[i] = new Thread(
+						new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
+							@Override
+							public int getResult() throws Exception {
+								return calculators[_id].backgroundInsulinDose(bodyWeight);
+							}
 						}
-					}
-			);
-			voterThreads[i].start();
-		}
-		return getVotedResult().setMethod("backgroundInsulinDose()");
+				);
+				voterThreads[i].start();
+			}
+			result = getVotedResult().setMethod("backgroundInsulinDose()");
+		}while( !isTimedOut() && (result==null || !result.isSuccessful()) && retries < 1);
+		return result;
 	}
 
 	@Override
 	public VoterResult personalSensitivityToInsulin(final int physicalActivityLevel, final int[] physicalActivitySamples, final int[] bloodSugarDropSamples) {
-		prepareVoting();
-		for(int i=0;i<versionCount; i++){
-			final int _id = i;
-			voterThreads[i] = new Thread(
-					new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
-						@Override
-						public int getResult() throws Exception {
-							return calculators[_id].personalSensitivityToInsulin(physicalActivityLevel, physicalActivitySamples, bloodSugarDropSamples);
+		VoterResult result = null;
+		int retries = -1;
+		do {
+			retries++;
+			System.out.println("Retry: " + retries);
+			offset = retries*versionCount;
+			prepareVoting();
+			for(int i=0;i<versionCount; i++){
+				final int _id = i;
+				voterThreads[i] = new Thread(
+						new VoterRunnable(_id, versionResults, serviceIdentifierArray, calculators, this) {
+							@Override
+							public int getResult() throws Exception {
+								return calculators[_id].personalSensitivityToInsulin(physicalActivityLevel, physicalActivitySamples, bloodSugarDropSamples);
+							}
 						}
-					}
-			);
-			voterThreads[i].start();
-		}
-		return getVotedResult().setMethod("personalSensitivityToInsulin");
+				);
+				voterThreads[i].start();
+			}
+			result = getVotedResult().setMethod("personalSensitivityToInsulin()");
+		}while( !isTimedOut() && (result==null || !result.isSuccessful()) && retries < 1);
+		return result;
 	}
 
 
 	private VoterResult getVotedResult(){
 		int count = 0;
 		int bestCount=-1, value=-1;
-		int majority = versionCount/2+1;
+		int majority = (versionCount/2)+1;
 		List<VersionResult> individual = new LinkedList<VersionResult>();
 		VersionResult version;
+		histogram.clear();
 
 		VoterResult voterResult = new VoterResult().setVersionCount(versionCount);
 
@@ -109,9 +134,9 @@ public class Voter implements VoterInterface{
 				version = queue.take();
 				count++;
 				individual.add(version);
-				countOcorrence(version.getResult());
+				if(version.isSuccessful()) countOcorrence(version.getResult());
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println("Request Timed Out.");
 			}
 		}
 		Set<Map.Entry<Integer, Integer>> results = histogram.entrySet();
@@ -123,12 +148,13 @@ public class Voter implements VoterInterface{
 			}
 		}
 
-		System.out.println("BestCount: " + bestCount + "\n Value: "  + value + "\n\n");
-
 		voterResult
 				.setResult(value)
 				.setVersionResults(individual);
-		if(bestCount>=majority) voterResult.setSuccessful(true);
+		if(bestCount>=majority){
+			System.out.println("Maj: " + majority + "\nBestCount: " +  bestCount +"\nValue: " + value );
+			voterResult.setSuccessful(true);
+		}
 		else voterResult.setSuccessful(false);
 
 		return voterResult.setRunTime(System.currentTimeMillis() - startTime);

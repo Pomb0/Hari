@@ -31,13 +31,11 @@ public abstract class VoterRunnable implements Runnable {
 				.setRunTime(0l);
 		int result;
 		try{
-			System.out.println("Trying to get the result :D " +  id);
 			result = getResult();
 		} catch (Exception e){
+			System.out.println("INTERRUPTED THE THREAD WHILE GETTING THE RESULT.");
 			result = -1;
-			e.printStackTrace();
 		}
-		System.out.println("Got the result: " +  id +" The result is: " + result);
 		if(result==-1) vres.setSuccessful(false);
 		else vres.setSuccessful(true);
 		vres
@@ -46,9 +44,9 @@ public abstract class VoterRunnable implements Runnable {
 		try{
 			queue.offer(vres);
 		}catch (Exception e){
-			e.printStackTrace();
+			System.out.println("INTERRUPTED THE THREAD.");
 		}
-		System.out.println("Finished: " +  id);
+
 	}
 
 	public abstract int getResult() throws Exception;

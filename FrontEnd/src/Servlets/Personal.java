@@ -18,18 +18,6 @@ public class Personal extends HttpServlet {
 		response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		boolean valid = false;
-		/*
-			chgrams: 60 - 150
-			chperunit: 10 - 15
-			bloodsugar: 120 - 250
-			targetbloodsugar: 80 - 120
-			sensitivity: 15 - 100
-
-
-			palevel: 0 - 10
-			bsdrop: 15 - 100
-
-		 */
 
 		int chgrams = 0;
 		int chperunit = 0;
@@ -92,7 +80,7 @@ public class Personal extends HttpServlet {
 			voterResultSensiativity = voter.personalSensitivityToInsulin(todaypalevel, palevel, bsdrop);
 			sensitivity = voterResultSensiativity.getResult();
 			voterResult = voter.mealtimeInsulinDose(chgrams, chperunit, bloodsugar, targetbloodsugar, sensitivity);
-			voterResult.setSuccessful(voterResultSensiativity.isSuccessful());
+			if(!voterResultSensiativity.isSuccessful()) voterResult.setSuccessful(false);
 			jsonArray.add(voterResultSensiativity.getJSON());
 			jsonArray.add(voterResult.getJSON());
 			jsonString = jsonArray.toJSONString();

@@ -19,7 +19,9 @@ public class TimerRunnable implements Runnable {
 		while(System.currentTimeMillis() < end) {
 			try {
 				Thread.sleep(end-System.currentTimeMillis());
-			} catch (InterruptedException e){}
+			} catch (InterruptedException e){
+				System.out.println("INTERRUPTED THE TIMER.");
+			}
 		}
 		stopEverything();
 	}

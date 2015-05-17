@@ -13,13 +13,13 @@ import java.util.List;
 public class ServiceManager {
 	static List<ServiceIdentifier> serviceList = new LinkedList<ServiceIdentifier>();
 
-	public static synchronized InsulinDoseCalculator ServiceClientFactory(ServiceIdentifier identifier){
+	public static InsulinDoseCalculator ServiceClientFactory(ServiceIdentifier identifier){
 		InsulinDoseCalculator client = null;
-		Service s = Service.create(identifier.getWsdlLocation(), identifier.getServiceName());
 		try {
+			Service s = Service.create(identifier.getWsdlLocation(), identifier.getServiceName());
 			client = s.getPort(InsulinDoseCalculator.class);
 		}catch (WebServiceException exception){
-			exception.printStackTrace();
+			System.out.println(">>" + identifier.getWsdlLocation().toString() + ": NOT UP :D");
 			client = null;
 		}
 		return client;

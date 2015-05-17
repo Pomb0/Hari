@@ -93,6 +93,7 @@ function TabObject(tab){
     };
 
     this.presentResult = function(data, textStatus){
+        log(data);
         techInfo.fillTechnicalInformation(data);
         techInfo.hideTechInfo();
         if(data[data.length-1].successful===true) selectTab('tab_result');
