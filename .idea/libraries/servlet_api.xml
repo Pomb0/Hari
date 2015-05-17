@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="servlet-api">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/servlet-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/catalina-tribes.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat-coyote.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/annotations-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/jasper-el.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat-dbcp.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat-util.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/websocket-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/catalina.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat7-websocket.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/el-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/tomcat-jdbc.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/jasper.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/catalina-ant.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/catalina-ha.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/jsp-api.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/apache-tomcat-7.0.62/lib/ecj-4.4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

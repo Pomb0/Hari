@@ -1,0 +1,36 @@
+<properties>
+    <webServices>
+        <webService id = "1">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://qcs08.dei.uc.pt:8080/InsulinDoseCalculator?wsdl</url>
+        </webService>        
+        <webService id = "2">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://qcs07.dei.uc.pt:8080/insulin?wsdl</url>
+        </webService>
+
+        <webService id = "3">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://liis-lab.dei.uc.pt:8080/Server?wsdl</url>
+        </webService>
+
+        <webService id = "4">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl</url>
+        </webService>
+
+        <webService id = "5">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://qcs02.dei.uc.pt:8080/insulinDosage?wsdl</url>
+        </webService>
+
+        <webService id = "6">
+            <namespace>InsulinDoseCalculatorService</namespace>
+            <url>http://qcs04.dei.uc.pt:8080/InsulinDoseCalculator?wsdl</url>
+        </webService>
+    </webServices>
+</properties>
+
+
+
+

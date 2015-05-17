@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ear" build-on-make="true" name="Hari:ear archive">
-    <output-path>$PROJECT_DIR$/out/artifacts/Hari_ear_archive</output-path>
-    <root id="archive" name="Hari_ear archive.ear">
-      <element id="artifact" artifact-name="Hari:ear" />
-    </root>
-  </artifact>
-</component>

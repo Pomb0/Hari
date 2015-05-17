@@ -29,7 +29,7 @@
 			<form method="post" class="calculator_form" action="standard">
 				<div class="row">
 					<label for="std_chgrams">Carbohydrates (grams):</label>
-					<input type="number" min="60" max="120" id="std_chgrams" name="chgrams" placeholder="" required>
+					<input type="number" min="60" max="150" id="std_chgrams" name="chgrams" placeholder="" required>
 				</div>
 
 				<div class="row">
@@ -64,7 +64,7 @@
 			<form method="post" class="calculator_form"  action="personal">
 				<div class="row">
 					<label for="chgrams">Carbohydrates (grams):</label>
-					<input type="number" min="60" max="120" id="chgrams" name="chgrams" placeholder="" required>
+					<input type="number" min="60" max="150" id="chgrams" name="chgrams" placeholder="" required>
 				</div>
 
 				<div class="row">
@@ -83,11 +83,9 @@
 				</div>
 
 				<div class="row">
-					<label for="sensitivity">Individual Sensitivity (mg/dl):</label>
-					<input type="number" value="50" min="15" max="100" id="sensitivity" name="sensitivity" placeholder="" required>
+					<label for="todaypalevel">Today's physical activity level: </label>
+					<input type="number" value="" min="0" max="10" id="todaypalevel" name="todaypalevel" placeholder="" required>
 				</div>
-
-
 
 				<div class="samples_row left">
 					<div class="left subsubtitle noselect" >
@@ -102,13 +100,13 @@
 					</div>
 
 					<div class="sample_block">
-						<div><input type="number" value="" min="0" max="10" name="palevel[]" placeholder="" required></div>
-						<div><input type="number" value="" min="15" max="100" name="bsdrop[]" placeholder="" required></div>
+						<div><input type="number" value="" min="0" max="10" name="palevel" placeholder="" required></div>
+						<div><input type="number" value="" min="15" max="100" name="bsdrop" placeholder="" required></div>
 					</div>
 
 					<div class="sample_block">
-						<div><input type="number" value="" min="0" max="10" name="palevel[]" placeholder="" required></div>
-						<div><input type="number" value="" min="15" max="100" name="bsdrop[]" placeholder="" required></div>
+						<div><input type="number" value="" min="0" max="10" name="palevel" placeholder="" required></div>
+						<div><input type="number" value="" min="15" max="100" name="bsdrop" placeholder="" required></div>
 					</div>
 
 				</div>
@@ -126,7 +124,7 @@
 			<form method="post" class="calculator_form" action="background">
 				<div class="row">
 					<label for="weight">Weight (KiloGrams):</label>
-					<input type="number" min="40" max="130" id="weight" name="weight" placeholder="" required>
+					<input type="number" min="60" max="120" id="weight" name="weight" placeholder="" required>
 				</div>
 
 				<div class="row">
@@ -134,6 +132,69 @@
 					<div class="button btn_red inline_block" onclick="selectTab(defaultTab)">Close</div>
 				</div>
 			</form>
+		</div>
+
+		<div class="tab center" id="tab_waiting">
+			<div class="loader"></div>
+		</div>
+
+		<div class="tab center" id="tab_result">
+			<div class="results">
+				<div class="title">You need <span id="insulinUnits"></span> units of insulin.</div>
+			</div>
+
+			<div id="technical_information" class="xsmall">
+				<div class="inline_block left info_block">
+					<table>
+						<tr>
+							<td class="left">Method:</td>
+							<td class="right ti_method"></td>
+						</tr>
+						<tr>
+							<td class="left">Successfull:</td>
+							<td class="right ti_successful"></td>
+						</tr>
+						<tr>
+							<td class="left">Number of Versions:</td>
+							<td class="right ti_versionCount"></td>
+						</tr>
+						<tr>
+							<td class="left">Result:</td>
+							<td class="right ti_result"></td>
+						</tr>
+						<tr>
+							<td class="left">Runtime(ms):</td>
+							<td class="right ti_runTime"></td>
+						</tr>
+					</table>
+					<div class="subsubtitle"><b>Service Details:</b></div>
+					<table class="service_row_table">
+						<tr class="service_row" id="service_row_model">
+							<td class="service_name"></td>
+							<td>
+								<ul>
+									<li><b>Successful: </b><span class="service_successful"></span></li>
+									<li><b>Result: </b><span class="service_result"></span></li>
+									<li><b>RunTime: </b><span class="service_runtime"></span></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<ul class="equiWidthList center">
+				<li class="button btn_blue" id="techinfo_show_button">Show technical information</li>
+				<li class="button btn_blue" id="techinfo_hide_button">Hide technical information</li>
+				<li class="button btn_red" onclick="selectTab(defaultTab)">Close</li>
+			</ul>
+		</div>
+
+		<div class="tab center" id="tab_error">
+			<div class="title">The service is not responding. Try again later.</div>
+			<ul class="equiWidthList center">
+				<li class="button btn_red" onclick="selectTab(defaultTab)">Close</li>
+			</ul>
 		</div>
 
 		<script src="src/js/jquery/jquery-2.1.4.js"></script>
