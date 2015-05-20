@@ -1,7 +1,7 @@
 package Servlets;
 
 import Voter.Results.VoterResult;
-import Voter.Voter;
+import Voter.VoterClean.VoterClean;
 import org.json.simple.JSONArray;
 import server.ServiceIdentifier;
 import server.ServiceManager;
@@ -18,20 +18,13 @@ public class Standard extends HttpServlet {
 		response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		boolean valid = false;
-		/*
-			chgrams: 60 - 150
-			chperunit: 10 - 15
-			bloodsugar: 120 - 250
-			targetbloodsugar: 80 - 120
-			sensitivity: 15 - 100
-		 */
 
 		int chgrams = 0;
 		int chperunit = 0;
 		int bloodsugar = 0;
 		int targetbloodsugar = 0;
 		int sensitivity = 0;
-		Voter voter;
+		VoterClean voter;
 		VoterResult voterResult;
 		JSONArray jsonArray = new JSONArray();
 		String jsonString = "";
@@ -68,7 +61,7 @@ public class Standard extends HttpServlet {
 		if(valid){
 			ServiceManager.loadServices(this.getServletContext().getRealPath("properties.xml"));
 			ServiceIdentifier[] list = ServiceManager.getServiceList();
-			voter = new Voter(list, 3, 2500);
+			voter = new VoterClean(list, 3, 3000l);
 			voterResult = voter.mealtimeInsulinDose(chgrams, chperunit, bloodsugar, targetbloodsugar, sensitivity);
 			jsonArray.add(voterResult.getJSON());
 			jsonString = jsonArray.toJSONString();

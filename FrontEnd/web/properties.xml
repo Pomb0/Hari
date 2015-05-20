@@ -3,7 +3,8 @@
         <webService id = "1">
             <namespace>InsulinDoseCalculatorService</namespace>
             <url>http://qcs08.dei.uc.pt:8080/InsulinDoseCalculator?wsdl</url>
-        </webService>        
+        </webService>
+
         <webService id = "2">
             <namespace>InsulinDoseCalculatorService</namespace>
             <url>http://qcs07.dei.uc.pt:8080/insulin?wsdl</url>

@@ -1,7 +1,7 @@
 package Servlets;
 
 import Voter.Results.VoterResult;
-import Voter.Voter;
+import Voter.VoterClean.VoterClean;
 import org.json.simple.JSONArray;
 import server.ServiceIdentifier;
 import server.ServiceManager;
@@ -28,7 +28,7 @@ public class Personal extends HttpServlet {
 		int[] palevel = new int[0];
 		int[] bsdrop = new int[0];
 
-		Voter voter;
+		VoterClean voter;
 		VoterResult voterResult;
 		VoterResult voterResultSensiativity;
 		JSONArray jsonArray = new JSONArray();
@@ -76,13 +76,14 @@ public class Personal extends HttpServlet {
 		if(valid){
 			ServiceManager.loadServices(this.getServletContext().getRealPath("properties.xml"));
 			ServiceIdentifier[] list = ServiceManager.getServiceList();
-			voter = new Voter(list, 3, 2500);
+			voter = new VoterClean(list, 3, 3500l);
 			voterResultSensiativity = voter.personalSensitivityToInsulin(todaypalevel, palevel, bsdrop);
-			sensitivity = voterResultSensiativity.getResult();
-			voterResult = voter.mealtimeInsulinDose(chgrams, chperunit, bloodsugar, targetbloodsugar, sensitivity);
-			if(!voterResultSensiativity.isSuccessful()) voterResult.setSuccessful(false);
 			jsonArray.add(voterResultSensiativity.getJSON());
-			jsonArray.add(voterResult.getJSON());
+			if(voterResultSensiativity.isSuccessful()){
+				sensitivity = voterResultSensiativity.getResult();
+				voterResult = voter.mealtimeInsulinDose(chgrams, chperunit, bloodsugar, targetbloodsugar, sensitivity);
+				jsonArray.add(voterResult.getJSON());
+			}
 			jsonString = jsonArray.toJSONString();
 		}
 		//Handle response, if necessary JSON conversion.
